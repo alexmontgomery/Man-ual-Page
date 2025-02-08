@@ -16,7 +16,7 @@ engine = create_engine('sqlite:///manualpage.db', echo=True)
 inspector = inspect(engine)
 if 'Manuals_Data' not in inspector.get_table_names():
     # read .csv file into pandas df
-    df = pd.read_csv('../car_data/parsed_data.csv')
+    df = pd.read_csv('car_data/parsed_data.csv')
     # create Manuals_Data sql table from pandas df
     df.to_sql('Manuals_Data', engine, index=False)
 
