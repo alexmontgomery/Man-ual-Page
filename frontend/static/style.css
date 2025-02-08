@@ -1,0 +1,173 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.background {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #3069CF;
+}
+
+
+#site-title {
+    font-family: "Squada One", sans-serif;
+    font-weight: 400;
+    font-size: 80px;
+    font-style: normal;
+    color: white;
+    text-align: left;
+  }
+
+
+.page-block {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+
+input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    margin: 10px;
+    font-size: 30px;
+    color: white;
+    background-color: transparent;
+    font-family: "Squada One", sans-serif;
+    border: 4px solid white;
+    border-radius: 0px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="button"] {
+    width: 70px;
+    padding: 10px;
+    margin: 10px;
+    font-size: 30px;
+    color: white;
+    background-color: transparent;
+    font-family: "Squada One", sans-serif;
+    border: 4px solid white;
+    border-radius: 0px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input[type="button"]:hover {
+    background-color: white;
+    color: #3069CF;
+    cursor: pointer;
+}
+
+
+input[type="text"]::placeholder {
+    color: white;
+    font-style: italic;
+}
+
+#enter-fields {
+    padding-bottom: 0;
+}
+
+#input-warning {
+    padding-top: 0;
+}
+
+#invalid-input {
+    font-family: "Squada One", sans-serif;
+    color: red;
+    font-size: 20px;
+}
+
+
+#output-block {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(135px, max-content));
+    gap: 30px;
+    justify-content: center;
+    max-width: 50%;
+    margin: auto;
+}
+
+.car-card {
+    display: inline-block;
+    width: 135px;
+    /* width: 100%;
+    max-width: 135px; */
+    height: 135px;
+    padding: 8px;
+    border: 2px solid white;
+    border-radius: 8px;
+}
+
+.car-card:hover {
+    background-color: white;
+    cursor: pointer;
+}
+
+.car-attribute {
+    color: white;
+    padding: 2px;
+}
+
+.car-card:hover .car-attribute {
+    color: #3069CF;
+}
+
+#car-year {
+    font-size: 18px;
+    font-family: "Squada One", sans-serif;
+}
+
+#car-make {
+    font-size: 22px;
+    font-weight: 700;
+    font-family: "Inconsolata", serif;
+}
+
+#car-model {
+    font-size: 18px;
+    font-family: "Inconsolata", serif;
+}
+
+#car-trans {
+    font-size: 15px;
+    font-family: "Inconsolata", serif;
+}
+
+
+.footer {
+    /* position: fixed; */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #3069CF;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer a {
+    margin: 0 15px;
+}
+
+#linkedin-icon {
+    color: white;
+    transition: transform 0.2s;
+}
+
+
+#github-icon {
+    color: white;
+    transition: transform 0.2s;
+}
+
+.footer img:hover {
+    transform: scale(1.1);
+}
+
+
+  

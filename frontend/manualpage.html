@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Manual Page</title>
+    <link rel="icon" type="image/png" href="static/manual-gearbox.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wdth,wght@87.5,200..900&family=Squada+One&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="static/style.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <div class="background">
+        
+            <div class="page-block" id="header">
+                <h1 id="site-title">The Manual Page</h1>
+            </div>
+            
+            <div class="page-block" id="enter-fields">
+                <div id="input-container">
+                    <form @submit.prevent="logYear(getData, handleInvalidYear)">
+                        <input v-model="yearInput" ref="inputField" type="text" id="year-input" placeholder="Enter model year"/>
+                        <input type="button" @click="logYear(getData, handleInvalidYear)" value="GO"/>
+                    </form>
+                </div>
+            </div>
+
+            <div class="page-block" id="input-warning">
+                <div id="input-warning-container">
+                    <p id="invalid-input" v-show="errMsgVisible">Please enter a year between 1984-2025.</p>
+                </div>
+            </div>
+    
+            <div class="page-block" id="output-block">
+                <div v-for="car in carData" :key="car.index" 
+                @click="webSearchCar(car.year, car.make, car.model)" class="car-card">
+                    <p id="car-year" class="car-attribute"> {{ car.year }} </p>
+                    <p id="car-make" class="car-attribute"> {{ car.make }} </p>
+                    <p id="car-model" class="car-attribute"> {{ car.model }} </p>
+                    <p id="car-trans" class="car-attribute"> {{ car.trany }} </p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <a href="https://www.linkedin.com/in/alexmontgomery7/" target="_blank">
+                <img src="static/icons8-linkedin.svg" alt="LinkedIn" id="linkedin-icon">
+            </a>
+            <a href="https://github.com/alexmontgomery" target="_blank">
+                <img src="static/icons8-github.svg" alt="GitHub" id="github-icon">
+            </a>
+        </footer>
+
+    </div>
+
+    
+    <!-- Vue App Functionality -->
+    <script type="module">
+        import { createApp, onMounted, ref, watch } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+    
+        createApp({
+            setup() {
+                // Vue refs - implemented in HTML tags to make elements reactive
+                const yearInput = ref('')
+                const inputField= ref(null)
+                const carData = ref([])
+                const errMsgVisible = ref(false)
+
+                
+                // focuses the year entry box on page load (gets cursor blinking)
+                onMounted(() => {
+                    inputField.value.focus()
+                })
+                
+
+                // on GO button click, execute:
+                const logYear = (validYrCallback, invalidYrCallback) => {
+                    console.log("year input logged: " + yearInput.value)
+
+                    const year = parseInt(yearInput.value, 10)
+
+                    // validate year input
+                    if (year >= 1984 && year <= 2025) {
+                        if (validYrCallback) {
+                            validYrCallback(year)
+                        }
+                    } else {
+                        if (invalidYrCallback) {
+                            invalidYrCallback(year)
+                        }
+                    }
+
+                    // reset the input field
+                    yearInput.value = ''
+                    inputField.value.focus()
+                }
+
+
+                // invalid year input callback - display error msg
+                const handleInvalidYear = (year) => {
+                    // toggle invalid year message on
+                    errMsgVisible.value = true
+                }
+
+
+                // valid year input callback - GET car data from backend
+                const getData = async (year) => {
+                    try {
+                        // toggle invalid year message off
+                        errMsgVisible.value = false
+
+                        const response = await axios.get(`http://127.0.0.1:5000/api/search/${year}`)
+                        carData.value = response.data
+                        carData.value.sort((a, b) => a.make.localeCompare(b.make))
+
+                        // reformat transmission field
+                        carData.value.forEach(car => {
+                            if (car.trany && car.trany[7] !== undefined) {
+                                car.trany = `${car.trany[7]}-speed Manual`;
+                            }
+                        })
+
+                    } catch (error) {
+                        console.error('Error fetching data:', error);
+                    }
+                }
+
+
+                // perform google search when user clicks on a car
+                const webSearchCar = (year, make, model) => {
+                    const query = year + ' ' + make + ' ' + model
+                    window.open('https://www.google.com/search?q=' + encodeURIComponent(query), '_blank')
+                }
+
+
+                // return refs and above functions to the HTML elements
+                return { yearInput, 
+                         inputField, 
+                         logYear, 
+                         handleInvalidYear, 
+                         getData,
+                         webSearchCar, 
+                         carData, 
+                         errMsgVisible }
+            }
+        }).mount('#app')
+
+    </script>
+
+
+
+</body>
+
+</html>
