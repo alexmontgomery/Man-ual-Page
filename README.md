@@ -1,1 +1,1 @@
-# Man-ual-Page
+# The Manual Page
