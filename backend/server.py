@@ -2,8 +2,11 @@ from flask import Flask, jsonify, render_template
 from flask_restful import Api, Resource
 from flask_cors import CORS
 import pandas as pd
+import os
 from sqlalchemy import create_engine, text, inspect
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+csv_path = os.path.join(BASE_DIR, 'car_data', 'parsed_data.csv')
 
 app = Flask(__name__)
 api = Api(app)
