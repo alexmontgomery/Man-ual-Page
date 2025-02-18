@@ -12,5 +12,5 @@ The web app was implemented using:
 
 🏞️ **Vue.js** for the frontend interface
 
-Check it out at [manualpage.info](manualpage.info):bangbang:
+Check it out at [manualpage.info](https://manualpage.info/):bangbang:
 
