@@ -117,7 +117,7 @@
                         // toggle invalid year message off
                         errMsgVisible.value = false
 
-                        const response = await axios.get(`http://127.0.0.1:5000/api/search/${year}`)
+                        const response = await axios.get(`https://manualpage.onrender.com/api/search/${year}`)
                         carData.value = response.data
                         carData.value.sort((a, b) => a.make.localeCompare(b.make))
 
