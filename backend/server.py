@@ -1,6 +1,8 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify
 from flask_restful import Api, Resource
 from flask_cors import CORS
+from waitress import serve
+
 import pandas as pd
 import os
 from sqlalchemy import create_engine, text, inspect
@@ -44,5 +46,5 @@ api.add_resource(YearToSearch, '/api/search/<int:year>')
 
 if __name__ == '__main__':
     # app.run(debug=True)
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, debug=True)
+    # port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=5000)

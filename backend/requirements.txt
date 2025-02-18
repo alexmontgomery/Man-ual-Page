@@ -1,5 +1,6 @@
-Flask
-Flask-RESTful
-Flask-CORS
+flask
+flask-restful
+flask-cors
 pandas
-SQLAlchemy
+sqlalchemy
+gunicorn
