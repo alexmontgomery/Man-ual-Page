@@ -1,6 +1,6 @@
 # The Manual Page
 
-Inspired by my newfound interest in manual transmission cars, I created a simple web app where users can enter a year and see all makes/models sold in the United States with a manual transmission.
+Inspired by my interest in manual transmission cars, I built a web app that lets users explore all makes and models sold in the U.S. with a manual transmission by year.
 
 Data for the app was sourced from the U.S. Department of Energy's fuel economy records, which can be found at [fueleconomy.gov](https://www.fueleconomy.gov/)
 
